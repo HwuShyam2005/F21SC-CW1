@@ -1,0 +1,175 @@
+<!-- WINDOWS SETUP -->
+<!-- DEFINES MAIN WINDOW PROPERTIES LIKE TITLE, SIZE AND BACKGROUND COLOR -->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="SimpleBrowser.MainWindow"
+        Title="Simple Web Browser"
+        Width="1000"
+        Height="700"
+        Background="#000000">
+
+    <!-- GLOBAL STYLES -->
+    <!-- STYLES APPLIED TO ALL THE BUTTONS AND TEXT BOXES -->
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#2C3E50"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="6,4"/>
+        </Style>
+    </Window.Styles>
+
+    <!-- SCROLLVIEWER AND MAIN LAYOUT -->
+    <!-- ENABLING SCROLLING FOR THE MAIN INTERFACE AND ARRANGING ALL THE ELEMENTS VERTICALLY -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <DockPanel Margin="20">
+            <StackPanel Orientation="Vertical" Spacing="16" HorizontalAlignment="Center">
+
+                <!-- TITLE AND STATUS -->
+                <!-- DISPLAYS THE CURRENT PAGE TITLE AND HTTP STATUS OF THE LOADED WEBPAGE -->
+                <TextBlock Name="TitleBlock"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="#FFFFFF"
+                           HorizontalAlignment="Left" />
+                <TextBlock Name="StatusBlock"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           Foreground="#AAAAAA"
+                           HorizontalAlignment="Left"
+                           Margin="0,0,0,10" />
+
+                <!-- WELCOME SECTION -->
+                <!-- WELCOME MESSAGE FOR THE USER BEFORE ANY PAGE IS LOADED -->
+                <TextBlock Text="Welcome..."
+                           FontSize="70"
+                           FontWeight="Bold"
+                           Foreground="#2C3E50"
+                           HorizontalAlignment="Left"
+                           Margin="0,30,0,10" />
+                <TextBlock Text="Start with searching something ..."
+                           FontSize="50"
+                           FontWeight="SemiBold"
+                           Foreground="#7F8C8D"
+                           HorizontalAlignment="Left"
+                           Margin="0,0,0,40" />
+
+                <!-- NAVIGATION BAR -->
+                <!-- CONTAINS BUTTONS FOR NAVIGATING BACKWARD, FORWARD, AND THE GO BUTTON FOR SEARCHING THE URL -->
+                <!-- URL BOX FOR TYPING SPECIFIC URL LINK -->
+                <!-- ALSO CONTAINS THE ARRANGING, SPACING, ALIGNMENT, MARGIN COMPONENTS OF THESE BUTTONS -->
+
+                <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Left">
+                    <Button Name="BackButton" Content="←" Width="35" Height="35" ToolTip.Tip="Go Back" />
+                    <Button Name="ForwardButton" Content="→" Width="35" Height="35" ToolTip.Tip="Go Forward" />
+                    <TextBox Name="UrlBox" Width="550" Watermark="Enter URL here..." />
+                    <Button Name="GoButton" Content="Go" Width="80" Height="35" />
+                </StackPanel>
+
+                <!-- CONTROL BUTTONS -->
+                <!-- CONTAINS BUTTONS LIKE HOME, SETHOME, ADDBOOKMARK, SHOWBOOKMARK, REFRESH, AND SHOW HISTORY -->
+                <!-- ALSO CONTAINS THE ARRANGING, SPACING, ALIGNMENT, MARGIN COMPONENTS OF THESE BUTTONS -->
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="0,10,0,10">
+                    <Button Name="HomeButton" Content="Home" />
+                    <Button Name="SetHomeButton" Content="Set as Home" />
+                    <Button Name="AddBookmarkButton" Content="Add Bookmark" />
+                    <Button Name="ShowBookmarksButton" Content="Show Bookmarks" />
+                    <Button Name="RefreshButton" Content="Refresh" />
+                    <Button Name="ShowHistoryButton" Content="Show History" />
+                </StackPanel>
+
+                <!-- BOOKMARKS PANEL -->
+                <!-- DISPLAYS SAVED BOOKMARKS  -->
+                <!-- USED FOR SHOWING AND HIDING THE SECTION -->
+                <StackPanel Name="BookmarksPanel"
+                            Orientation="Vertical"
+                            Margin="0,10,0,10"
+                            Width="600"
+                            IsVisible="False">
+                    <TextBlock Text="Bookmarks:"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               Margin="0,5,0,5" />
+                    <StackPanel Name="BookmarksList" Orientation="Vertical" Spacing="4" />
+                </StackPanel>
+
+                <!-- HISTORY PANEL -->
+                <!-- DISPLAYS BROWSING HISTORY -->
+                <!-- CONSIST OF CLEAR HISTORY BUTTON USED FOR REMOVING ALL THE SEARCHED ENTRIES -->
+                <StackPanel Name="HistoryPanel"
+                            Orientation="Vertical"
+                            Margin="0,10,0,10"
+                            Width="600"
+                            IsVisible="False">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,5">
+                        <TextBlock Text="History:"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   Margin="0,5,10,5" />
+                        <Button Name="ClearHistoryButton" Content="Clear History" Width="140" Height="30" />
+                    </StackPanel>
+                    <StackPanel Name="HistoryList" Orientation="Vertical" Spacing="4" />
+                </StackPanel>
+
+                <!-- SEPARATOR -->
+                <!-- A VISUAL SEPARATION BETWEEN SECTIONS -->
+                <Separator Height="2" Background="#BDBDBD" Margin="0,20,0,10" Width="900" />
+
+                <!-- HTML DISPLAY -->
+                <!-- DISPLAYS THE RAW HTML PRESENT IN THE URL SEARCHED -->
+                <!-- CONSIST OF A VERTICAL AND HORIZONTAL SCROLL BAR FOR BETTER ACCESSIBILITY -->
+                <TextBlock Text="HTML Display"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,5" />
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto"
+                              Height="300"
+                              Width="900">
+                    <TextBox Name="HtmlDisplay"
+                             AcceptsReturn="True"
+                             AcceptsTab="True"
+                             IsReadOnly="True"
+                             TextWrapping="NoWrap"
+                             FontFamily="Consolas"
+                             FontSize="12"
+                             Background="#FFFFFF"
+                             BorderThickness="1"
+                             BorderBrush="#E0E0E0" />
+                </ScrollViewer>
+
+                <!-- SEPARATOR -->
+                <!-- A VISUAL SEPARATION BETWEEN SECTIONS -->
+                <Separator Height="2" Background="#BDBDBD" Margin="0,20,0,10" Width="900" />
+
+                <!-- FIRST 5 LINKS -->
+                <!-- DISPLAYS THE FIRST 5 HYPERLINKS FOUND IN THE LOADED URL AS CLICKABLE BUTTONS -->
+                <TextBlock Text="First 5 Links"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,5" />
+                <StackPanel Name="LinksPanel" Orientation="Vertical" Spacing="4" />
+            </StackPanel>
+        </DockPanel>
+    </ScrollViewer>
+</Window>
